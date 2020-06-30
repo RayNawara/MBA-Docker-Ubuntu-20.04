@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    build: .    
+    volumes:
+      - "./mba-orig:/mba-orig"
+    container_name: mba_rails
+    depends_on:
+      - db
+    ports:
+      - 8081:8080
+    tty: true
+  db:
+    image: vsamov/mysql-5.1.73
+    volumes:
+      - "./mbasql:/var/lib/mysql"
+    container_name: mba_mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Mys3267!
+      - RAILS_ENV=development
