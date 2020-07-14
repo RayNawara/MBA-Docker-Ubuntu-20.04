@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 LABEL description="This is an image to setup a dev environment for mbadiamond"
 
 RUN apt-get update && apt-get install -y
-RUN apt-get install -qq -y wget git-core curl unzip zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs
+RUN apt-get install -qq -y vi nano wget git-core curl unzip zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs
 
 # set rbenv, ruby-build bin paths
 ENV HOME /home/app
