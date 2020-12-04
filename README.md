@@ -10,11 +10,30 @@ To build:
 
 To run:
 
-- run `docker-compose run --rm --service-ports ruby_dev`
+- run `docker-compose up -d`
 
-To run in multiple terminal windows:
+In another window change to your app source directory - as you can see in docker-compose.yml mine is /home/ray/mba-orig-next
 
-- run `docker exec -it YOUR_CONTAINER_ID /bin/bash`
+Then start your IDE
+
+```
+code .
+```
+Make sure that gem unicorn is uncommented!
+
+Also check out your docker network
+
+`docker inspect rails-next-docker_default`
+
+Back to your first window
+
+- run `docker exec -it mba_rails /bin/bash`
+
+This will drop you into your home directory
+
+`bundle install`
+
+`bundle exec unicorn_rails -c config/unicorn.conf`
 
 To exit bash or your container:
 
@@ -23,19 +42,8 @@ To exit bash or your container:
 To cleanup:
 
 - run `docker-compose down`
-- run `docker rmi rails-docker_ruby_dev`
 
 ## Rails
-
-To start a new project:
-
-- run `rails new MYAPP` then `cd MYAPP`
-
-- Install bundles. run `bundle update && bundle install`
-
-Starting the server:
-
-- run `rails server -p $PORT -b 0.0.0.0`. Check your localhost:3000 to see if it's working.
 
 Stopping the server:
 
