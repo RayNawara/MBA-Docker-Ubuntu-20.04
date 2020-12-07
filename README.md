@@ -14,7 +14,7 @@ To run:
 
 In another window change to your app source directory - as you can see in docker-compose.yml mine is /home/ray/mba-orig-next
 
-Then start your IDE
+Then start your IDE. I use VS Code.
 
 ```
 code .
