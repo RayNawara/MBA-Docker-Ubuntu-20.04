@@ -1,12 +1,14 @@
 version: "3"
 services:
   rails:
-    image: rjnawara/mba-next:latest   
+    build: .   
     volumes:
-      - /home/ray/mba-orig-next:/mba-orig
+      - ./mbadiamond:/mba-orig
     container_name: mba_rails
     depends_on:
       - mysql
+      - gemstash
+      - sphinx
     ports:
       - 8081:8080
     tty: true    
@@ -23,3 +25,20 @@ services:
     environment:
       - MYSQL_DATABASE=mba_development
       - MYSQL_ROOT_PASSWORD=Mys3267!
+
+  gemstash:
+    image: artemave/gemstash
+    volumes: 
+      - /home/ray/rails-next-docker:/root/.gemstash
+    container_name: gemstash_server
+    ports: 
+      - '9292:9292'
+
+  sphinx:
+    image: ajoergensen/sphinxsearch
+    volumes:
+      - ./data:/var/lib/sphinxsearch/data
+      - ./mbadiamond:/var/www/mbadiamond
+      - ./sphinx.conf:/etc/sphinx/sphinx.conf
+    container_name: sphinx-server
+    mem_limit: 256m
